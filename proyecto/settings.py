@@ -46,8 +46,19 @@ INSTALLED_APPS = [
     'catalogo',
     'tailwind',
     'theme',
-   
+    'cloudinary',
+    'cloudinary_storage',
 ]
+# Configuración de Cloudinary Storage
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dizelazsp',
+    'API_KEY': '795534312174197',
+    'API_SECRET': 'BnHn89H9NLkVmUpoT25Sr2IyWAg',
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+
 if DEBUG:
     # Add django_browser_reload only in DEBUG mode
     INSTALLED_APPS += ['django_browser_reload']
