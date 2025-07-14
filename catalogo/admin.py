@@ -25,6 +25,7 @@ class ProductoAdmin(admin.ModelAdmin):
     )
 
     def mostrar_imagen(self, obj):
+        
         if obj.imagen:
             return format_html(
                 '<img src="{}" width="60" height="60" style="object-fit: cover; border-radius: 4px;" />',

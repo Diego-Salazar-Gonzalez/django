@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-
+from cloudinary.models import CloudinaryField
 class Categoria(models.Model):
     nombre = models.CharField(max_length=100, unique=True)
     descripcion = models.TextField(blank=True)
@@ -12,7 +12,7 @@ class Producto(models.Model):
     nombre = models.CharField(max_length=150)
     precio = models.DecimalField(max_digits=10, decimal_places=2)
     descripcion = models.TextField()
-    imagen = models.ImageField(upload_to='productos/', blank=True, null=True)
+    imagen = CloudinaryField('imagen', blank=True, null=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.CASCADE, related_name='productos')
 
     def __str__(self):
