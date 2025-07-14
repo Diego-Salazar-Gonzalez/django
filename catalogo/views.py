@@ -107,8 +107,7 @@ def productos_por_categoria(request, categoria_id):
     })
 
 
-def handler404(request, exception):
-    return redirect('inicio')  # nombre de la url de inicio
+
 
 @require_POST
 def logout_view(request):

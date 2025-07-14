@@ -26,7 +26,7 @@ urlpatterns = [
      path('', RedirectView.as_view(url='/inicio/', permanent=False)),
     path('', include('catalogo.urls')),
 ]
-handler404 = 'catalogo.views.handler404'
+
 if settings.DEBUG:
     # Include django_browser_reload URLs only in DEBUG mode
     urlpatterns += [
