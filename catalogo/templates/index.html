@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<div
+  class="bg-white flex flex-col md:flex-row items-center justify-center w-full px-4 py-10 gap-10"
+>
+  <!-- Texto -->
+  <div class="md:w-1/2 max-w-xl text-left">
+    <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">
+      Descubre Nuestros Productos
+      <strong class="text-indigo-600">Premium</strong>
+    </h1>
+    <p class="mt-4 text-base text-gray-700 sm:text-lg">
+      Encuentra la mejor tecnología, accesorios elegantes y artículos de oficina
+      de calidad.
+    </p>
+  </div>
+
+  <!-- Imagen -->
+  <div class="md:w-1/2 w-full max-w-xl">
+    <img
+      class="w-full h-auto object-contain"
+      src="{% static 'img/banner.webp' %}"
+      alt="Banner"
+    />
+  </div>
+</div>
+
+<section class="bg-white py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl font-bold text-center text-indigo-600 mb-12">
+      Categorías de Productos
+    </h2>
+
+    {% if categorias_con_productos %}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {% for categoria, productos in categorias_con_productos.items %}
+          <div class="bg-cyan-50 rounded-xl shadow-md p-6">
+            <h3 class="text-xl font-semibold text-indigo-600 mb-4">
+              {{ categoria }}
+            </h3>
+            <ul class="space-y-4">
+              {% for producto in productos|slice:":3" %}
+              <li class="flex items-start gap-4">
+                <img
+                  src="{{ producto.imagen }}"
+                  alt="{{ producto.nombre }}"
+                  class="w-16 h-16 rounded object-cover"
+                />
+                <div>
+                  <span class="text-indigo-600 font-medium block">
+                    {{ producto.nombre }}
+                  </span>
+                  <p class="text-gray-600 text-sm">{{ producto.descripcion }}</p>
+                  <p class="text-indigo-800 font-bold text-sm mt-1">
+                    $ {{ producto.precio }}
+                  </p>
+                </div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="text-center text-gray-500 mt-8">
+        No hay productos disponibles.
+      </p>
+    {% endif %}
+  </div>
+</section>
+{% endblock contenido %}

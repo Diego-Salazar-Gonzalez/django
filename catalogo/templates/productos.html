@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+<div class="container mx-auto px-4 py-6">
+    <h1 class="text-3xl font-bold text-indigo-600 mb-4">
+        Productos de {{ titulo_categoria }}
+    </h1>
+
+    {% if categorias %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+            {% for producto in categorias %}
+                <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                    <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h2 class="text-xl font-semibold text-indigo-600">{{ producto.nombre }}</h2>
+                        <p class="text-gray-700 text-sm my-2">{{ producto.descripcion }}</p>
+                        <p class="text-indigo-700 font-bold text-lg">${{ producto.precio }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-gray-500 mt-10 text-lg">
+            No hay productos disponibles en esta categoría.
+        </p>
+    {% endif %}
+</div>
+{% endblock contenido %}
