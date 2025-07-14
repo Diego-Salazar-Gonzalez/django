@@ -29,7 +29,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 
@@ -46,11 +46,8 @@ INSTALLED_APPS = [
     'catalogo',
     'tailwind',
     'theme',
-    'cloudinary',
-    'cloudinary_storage',
+   
 ]
-# Configuración de Cloudinary Storage
-
 if DEBUG:
     # Add django_browser_reload only in DEBUG mode
     INSTALLED_APPS += ['django_browser_reload']
