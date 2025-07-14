@@ -5,11 +5,11 @@ from django.views.decorators.http import require_POST
 from django.contrib.auth import authenticate, login as auth_login
 from django.http import JsonResponse
 from .models import Producto, Categoria
-from django.http import JsonResponse
 from .models import Producto
 from collections import defaultdict
 from django.db.utils import OperationalError
-from django.shortcuts import redirect
+from django.contrib import messages
+from django.shortcuts import redirect, get_object_or_404
 def inicio(request):
     try:
         productos = Producto.objects.select_related('categoria').all()
@@ -81,34 +81,64 @@ def admin(request):
 def vista_productos(request):
     categorias = Categoria.objects.all()
     print(categorias)
-   
-
 def productos_por_categoria(request, categoria_id):
     try:
         productos = Producto.objects.filter(categoria_id=categoria_id)
-        print(productos)
         categoria = Categoria.objects.get(id=categoria_id)
     except OperationalError:
         productos = []
-        categoria =[]
-    data = [
-        {
-            'nombre': p.nombre,
-            'descripcion': p.descripcion,
-            'precio': str(p.precio),
-            'imagen': p.imagen.url if p.imagen else None  # Usamos imagen.url si existe
-        }
-        for p in productos
-    ]
+        categoria = None
 
     return render(request, 'productos.html', {
-        'categorias': data,
-        'titulo_categoria': categoria.nombre
+        'categorias': productos,
+        'titulo_categoria': categoria.nombre if categoria else "Sin categoría"
     })
 
 
+def agregar_al_carrito(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
 
+    # Obtener el carrito desde la sesión, o crear uno nuevo si no existe
+    carrito = request.session.get('carrito', {})
 
+    # Agregar el producto al carrito (por ahora sin cantidad, solo una vez)
+    if str(producto_id) in carrito:
+        carrito[str(producto_id)] += 1  # suma cantidad
+    else:
+        carrito[str(producto_id)] = 1  # lo agrega con cantidad 1
+
+    request.session['carrito'] = carrito  # Guardar carrito en sesión
+    request.session.modified = True       # Marcar sesión como modificada
+
+    return redirect('carrito')  # Redirigir a la vista del carrito
+
+def carrito(request):
+    carrito = request.session.get('carrito', {})
+    productos = Producto.objects.filter(id__in=carrito.keys())
+
+    # Armar los datos para la plantilla
+    carrito_detalles = []
+    total = 0
+    for producto in productos:
+        cantidad = carrito.get(str(producto.id), 0)
+        subtotal = producto.precio * cantidad
+        total += subtotal
+        carrito_detalles.append({
+            'producto': producto,
+            'cantidad': cantidad,
+            'subtotal': subtotal,
+        })
+
+    return render(request, 'carrito.html', {
+        'carrito': carrito_detalles,
+        'total': total,
+    })
+def pagar_carrito(request):
+    # Aquí podrías procesar el pago real...
+    request.session['carrito'] = {}  # Vaciar el carrito
+    request.session.modified = True
+    messages.success(request, "¡Gracias por tu compra!")
+    return redirect('carrito')  # Redirige a la misma página del carrito
 @require_POST
 def logout_view(request):
     logout(request)
