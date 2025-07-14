@@ -29,7 +29,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 
 
@@ -58,6 +58,7 @@ INTERNAL_IPS =[
 NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -66,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 if DEBUG:
     # Add django_browser_reload middleware only in DEBUG mode
@@ -146,10 +148,14 @@ AUTH_USER_MODEL = 'catalogo.Cliente'
 
 ALLOWED_HOSTS = ['django-qlc3.onrender.com', 'localhost', '127.0.0.1']
 STATIC_URL = '/static/'
+
+# Carpeta donde Django copiará los archivos estáticos con collectstatic
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Para desarrollo local también
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+# Para desarrollo local: indica dónde están tus archivos estáticos
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 AUTHENTICATION_BACKENDS = ['catalogo.auth_backend.EmailBackend']
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
