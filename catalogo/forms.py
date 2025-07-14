@@ -11,19 +11,11 @@ class RegistroClienteForm(UserCreationForm):
         fields = ['nombre', 'email']
         
 class LoginForm(forms.Form):
-    email = forms.EmailField()
-    password = forms.CharField(widget=forms.PasswordInput)
-
-    def clean(self):
-        cleaned_data = super().clean()
-        email = cleaned_data.get('email')
-        password = cleaned_data.get('password')
-
-        if email and password:
-            user = authenticate(email=email, password=password)
-            if user is None:
-                raise forms.ValidationError("Correo o contraseña incorrectos")
-            if not user.is_active:
-                raise forms.ValidationError("Cuenta inactiva")
-            cleaned_data['user'] = user
-        return cleaned_data
+    email = forms.EmailField(label='Correo', widget=forms.EmailInput(attrs={
+        'class': 'w-full px-4 py-2 border border-cyan-200 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400 text-black',
+        'placeholder': 'ejemplo@correo.com'
+    }))
+    password = forms.CharField(label='Contraseña', widget=forms.PasswordInput(attrs={
+        'class': 'w-full px-4 py-2 border border-cyan-200 rounded-md focus:outline-none focus:ring-2 focus:ring-cyan-400 text-black',
+        'placeholder': '********'
+    }))

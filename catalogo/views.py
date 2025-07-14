@@ -10,6 +10,8 @@ from collections import defaultdict
 from django.db.utils import OperationalError
 from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404
+from django.contrib.auth import get_user_model
+
 def inicio(request):
     try:
         productos = Producto.objects.select_related('categoria').all()
@@ -47,29 +49,29 @@ def registro(request):
         form = RegistroClienteForm()
 
     return render(request, 'registro.html', {'form': form})
+User = get_user_model()
 
 def login(request):
+    form = LoginForm(request.POST or None)
     
     if request.method == 'POST':
-        form = LoginForm(request.POST)
-        print(form)
         if form.is_valid():
-            
-            username = form.cleaned_data['email']
+            email = form.cleaned_data['email']
             password = form.cleaned_data['password']
-
-            user = authenticate(request, username=username, password=password)
-
-            if user is not None:
-                auth_login(request, user)
-                return redirect('inicio')  # o donde desees
-            else:
-                form.add_error(None, "Credenciales inválidas")
-    else:
-        form = LoginForm()
-
+            
+            try:
+                user_obj = User.objects.get(email=email)
+                user = authenticate(request, username=email, password=password)
+                
+                if user is not None:
+                    auth_login(request, user)
+                    return redirect('inicio')
+                else:
+                    form.add_error(None, "Correo o contraseña incorrectos.")
+            except User.DoesNotExist:
+                form.add_error(None, "Correo o contraseña incorrectos.")
+    
     return render(request, 'login.html', {'form': form})
-
 def admin(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:
