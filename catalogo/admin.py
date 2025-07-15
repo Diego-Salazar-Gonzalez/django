@@ -1,6 +1,12 @@
 from django.contrib import admin
 from .models import Categoria, Producto
 from django.utils.html import format_html
+from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
+
+admin.site.site_header = "IATEC Administración"
+admin.site.site_title = "Panel de IATEC"
+admin.site.index_title = "Bienvenido al Panel de Administración de IATEC"
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
