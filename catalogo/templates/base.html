@@ -45,6 +45,11 @@
                     class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
                     >Accesorios de oficina</a
                   >
+                  <a
+                    href="/productos/4/"
+                    class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
+                    >Articulos escolares</a
+                  >
                 </div>
               </div>
             </div>
@@ -318,6 +323,24 @@
         </div>
       </div>
     </footer>
+    <style>
+      @keyframes fade-up {
+        0% {
+          opacity: 0;
+          transform: translateY(60px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    
+      .animate-fade-up {
+        opacity: 0; /* Necesario para que la animación tenga efecto */
+        animation: fade-up 1.2s ease-out forwards;
+      }
+    </style>
+    
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         const button = document.getElementById("mobile-menu-button");
