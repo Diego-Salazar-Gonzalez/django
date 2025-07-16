@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Tienda - Todo lo que necesitas</title>
     {% tailwind_css %}
-    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AWXSeCw7mBz1jIgaQ0mvj0L1V74AlUSAXcHY2CSc5hLcNXj4i2tyhGmCr3LDwzqolnYZQDwM-JxOPykK"></script>
   </head>
   <body class="">
 
@@ -186,7 +186,7 @@
       </nav>
     </header>
 
-    <main class="container  mx-auto ">
+    <main class="container bg-white  mx-auto ">
       {% block contenido %} {% endblock contenido %}
     </main>
     <footer class="bg-gray-900 text-white pt-12 pb-8">
@@ -340,7 +340,7 @@
       }
     
       #slider {
-        animation: slide-left 30s linear infinite;
+        animation: slide-left 10s linear infinite;
       }
     </style>
     <style>
@@ -371,6 +371,39 @@
         });
       });
     </script>
+    <script>
+      const total = "{{ total }}";  // Total enviado desde Django como string
+    
+      paypal.Buttons({
+        style: {
+          layout: 'vertical',
+          color: 'gold',
+          shape: 'rect',
+          label: 'paypal'
+        },
+    
+        // Crear la orden
+        createOrder: function(data, actions) {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                value: total  // Usamos la variable que viene de Django
+              }
+            }]
+          });
+        },
+    
+        // Capturar pago aprobado
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            alert('Pago completado por: ' + details.payer.name.given_name);
+            // Aquí puedes redirigir, guardar en DB, etc.
+            window.location.href = "{% url 'carrito' %}";
+          });
+        }
+    
+      }).render('#paypal-button-container');
+    </script> 
     
   </body>
 </html>
