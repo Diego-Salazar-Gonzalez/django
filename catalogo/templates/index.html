@@ -23,6 +23,33 @@
     />
   </div>
 </div>
+<section class="bg-slate-200 py-6 overflow-hidden relative">
+ 
+
+    <!-- Repetimos el mismo grupo para el ciclo infinito -->
+    <div id="slider" class="flex justify shrink-0 space-x-14">
+      <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=200&q=150" alt="Bisutería1" class="max-h-5 rounded-lg object-cover"/>
+      <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=200&q=80" alt="Bisutería2" class="max-h-5 rounded-lg object-cover"/>
+      <img src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=150&q=80" alt="Bisutería3" class="max-h-5 rounded-lg object-cover"/>
+      <img src="https://images.unsplash.com/photo-1607081758973-b85919737e26?auto=format&fit=crop&w=150&q=80" alt="Mueble 1" class="max-h-5 rounded-lg object-cover"/>
+  
+      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=150&q=80" alt="Mueble2" class="max-h-5 rounded-lg object-cover"/>
+      <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=150&q=80" alt="Mueble3" class="max-h-5 rounded-lg object-cover"/>
+      <img src="https://images.unsplash.com/photo-1509762774605-f07235a08f1f?auto=format&fit=crop&w=150&q=80" alt="Útiles Escolares1" class="max-h-5 rounded-lg object-cover"/>
+   
+      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=150&q=80" alt="Útiles Escolares2" class="max-h-5 rounded-lg object-cover" />
+      <img src="https://images.unsplash.com/photo-1623302312645-65df66384692?auto=format&fit=crop&w=150&q=80" alt="Útiles Escolares3" class="max-h-5 rounded-lg object-cover" />
+      
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=150&q=80" alt="Accesorios Oficina 1" class="max-h-5 rounded-lg object-cover" />
+      <img src="https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&w=150&q=80" alt="Accesorios Oficina3" class="max-h-5 rounded-lg object-cover" />
+      <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=150&q=80" alt="Celulares1" class="max-h-5 rounded-lg object-cover" />
+      
+      <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=150&q=80" alt="Celulares3" class="max-h-5 rounded-lg object-cover" />
+      <img src="https://images.unsplash.com/photo-1712002641088-9d76f9080889?auto=format&fit=crop&w=150&q=80" alt="Celulares 3" class="max-h-5 rounded-lg object-cover" />
+      
+    </div>
+  </div>
+</section>  
 
 <section class="bg-white py-12 px-4 sm:px-6 lg:px-8 ">
   <div class="max-w-7xl mx-auto animate-fade-up" style="animation-delay: 0.3s; ">
@@ -66,5 +93,68 @@
       </p>
     {% endif %}
   </div>
+  <section class="bg-cyan-50 p-8 py-16">
+    <div class="container mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold text-indigo-600 mb-4">Sobre Nosotros</h2>
+        <p class="text-gray-700 text-lg max-w-2xl mx-auto">
+          Somos una tienda comprometida con ofrecer productos variados y de calidad para el hogar, la oficina y la vida diaria.
+        </p>
+      </div>
+  
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div>
+          <h3 class="text-2xl font-semibold text-gray-800 mb-4">¿Qué ofrecemos?</h3>
+          <ul class="list-disc pl-5 text-gray-600 space-y-2">
+            <li>Elegante <strong>bisutería</strong> para todos los gustos.</li>
+            <li>Funcionales y cómodos <strong>muebles</strong> para tu hogar y oficina.</li>
+            <li><strong>Útiles escolares</strong> para apoyar la educación.</li>
+            <li>Prácticos <strong>accesorios de oficina</strong> que optimizan tu espacio de trabajo.</li>
+          </ul>
+        </div>
+  
+        <div class="rounded-xl overflow-hidden shadow-lg">
+          <img src="https://images.pexels.com/photos/7680681/pexels-photo-7680681.jpeg" alt="Nuestra tienda" class="w-full h-80">
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="bg-cyan-50 gap-5 flex py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-extrabold text-indigo-600 mb-4 text-center">Contáctanos</h2>
+      <p class="text-indigo-600 text-center mb-8 font-medium">¿Tienes preguntas o necesitas ayuda? Estamos para atenderte.</p>
+  
+      <form action="#" method="POST" class="space-y-6 bg-slate-900 p-6 rounded-lg shadow-xl">
+        <div>
+          <label for="nombre" class="block text-sm font-semibold text-black">Nombre</label>
+          <input type="text" name="nombre" id="nombre" required
+                 class="mt-1 block w-full px-4 py-2 bg-slate-800 text-black border border-slate-700 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none sm:text-sm">
+        </div>
+  
+        <div>
+          <label for="email" class="block text-sm font-semibold text-black">Correo electrónico</label>
+          <input type="email" name="email" id="email" required
+                 class="mt-1 block w-full px-4 py-2 bg-slate-800 text-black border border-slate-700 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none sm:text-sm">
+        </div>
+  
+        <div>
+          <label for="mensaje" class="block text-sm font-semibold text-black">Mensaje</label>
+          <textarea name="mensaje" id="mensaje" rows="4" required
+                    class="mt-1 block w-full px-4 py-2 bg-slate-800 text-black border border-slate-700 rounded-md shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none sm:text-sm"></textarea>
+        </div>
+  
+        <div>
+          <button type="submit"
+                  class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-bold rounded-md text-black bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+            Enviar mensaje
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+|  
+  
 </section>
+
 {% endblock contenido %}

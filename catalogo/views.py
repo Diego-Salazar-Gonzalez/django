@@ -34,10 +34,12 @@ def inicio(request):
             'precio': str(p.precio),
             'imagen': imagen
         })
-
+    categorias = Categoria.objects.all()
     return render(request, 'index.html', {
-        'categorias_con_productos': dict(categorias_con_productos)
-    })
+    'categorias': categorias,
+    'categorias_con_productos': dict(categorias_con_productos)
+})
+
 
 def registro(request):
     if request.method == 'POST':
@@ -72,6 +74,11 @@ def login(request):
                 form.add_error(None, "Correo o contraseña incorrectos.")
     
     return render(request, 'login.html', {'form': form})
+def navbar_view(request):
+    categorias = Categoria.objects.all()
+    return render(request, 'tu_template.html', {'categorias': categorias})
+
+
 def admin(request):
     if request.user.is_authenticated:
         if request.user.is_superuser:

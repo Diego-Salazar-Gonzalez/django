@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mi Tienda - Todo lo que necesitas</title>
     {% tailwind_css %}
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID"></script>
   </head>
-  <body>
+  <body class="">
+
     <header>
       <nav class="bg-white shadow-lg">
         <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
@@ -28,7 +30,7 @@
               <div class="hidden sm:block sm:ml-6">
                 <div class="flex space-x-4">
                   <a
-                    href="/productos/1"
+                    href="/productos/1/"
                     class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
                     >Bisuteria</a
                   >
@@ -36,12 +38,12 @@
                   <!-- Products Dropdown Trigger -->
 
                   <a
-                    href="/productos/2"
+                    href="/productos/2/"
                     class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
                     >Telefonos</a
                   >
                   <a
-                    href="/productos/3"
+                    href="/productos/3/"
                     class="text-gray-900 hover:bg-gray-100 px-3 py-2 rounded-md text-sm font-medium"
                     >Accesorios de oficina</a
                   >
@@ -134,15 +136,15 @@
         <div class="sm:hidden hidden" id="mobile-menu">
           <div class="px-4 pt-4 pb-6 space-y-2 text-center">
             <!-- Enlaces de productos -->
-            <a href="/productos/1"
+            <a href="/productos/1/"
                class="block w-full bg-indigo-100 text-indigo-800 hover:bg-indigo-200 font-semibold px-4 py-2 rounded-lg shadow-sm transition duration-200">
               Bisutería
             </a>
-            <a href="/productos/2"
+            <a href="/productos/2/"
                class="block w-full bg-indigo-100 text-indigo-800 hover:bg-indigo-200 font-semibold px-4 py-2 rounded-lg shadow-sm transition duration-200">
               Teléfonos
             </a>
-            <a href="/productos/3"
+            <a href="/productos/3/"
                class="block w-full bg-indigo-100 text-indigo-800 hover:bg-indigo-200 font-semibold px-4 py-2 rounded-lg shadow-sm transition duration-200">
               Accesorios Oficina
             </a>
@@ -184,7 +186,7 @@
       </nav>
     </header>
 
-    <main class="container  mx-auto bg-white">
+    <main class="container  mx-auto ">
       {% block contenido %} {% endblock contenido %}
     </main>
     <footer class="bg-gray-900 text-white pt-12 pb-8">
@@ -258,17 +260,17 @@
             <h3 class="text-lg font-semibold">Links Rapidos</h3>
             <ul class="space-y-2">
               <li>
-                <a href="/productos/1" class="text-gray-400 hover:text-white transition"
+                <a href="/productos/1/" class="text-gray-400 hover:text-white transition"
                   >Bisuteria</a
                 >
               </li>
               <li>
-                <a href="/productos/2" class="text-gray-400 hover:text-white transition"
+                <a href="/productos/2/" class="text-gray-400 hover:text-white transition"
                   >Telefonos</a
                 >
               </li>
               <li>
-                <a href="/productos/3" class="text-gray-400 hover:text-white transition"
+                <a href="/productos/3/" class="text-gray-400 hover:text-white transition"
                   >Accesorios Oficina</a
                 >
               </li>
@@ -328,6 +330,20 @@
       </div>
     </footer>
     <style>
+      @keyframes slide-left {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
+      }
+    
+      #slider {
+        animation: slide-left 30s linear infinite;
+      }
+    </style>
+    <style>
       @keyframes fade-up {
         0% {
           opacity: 0;
@@ -355,6 +371,7 @@
         });
       });
     </script>
+    
   </body>
 </html>
 
